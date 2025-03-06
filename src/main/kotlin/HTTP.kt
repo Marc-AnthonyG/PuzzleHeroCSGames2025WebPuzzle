@@ -13,15 +13,15 @@ import kotlinx.serialization.Serializable
 
 fun Application.configureHTTP() {
     install(DefaultHeaders) {
-        header("X-Engine", "Ktor") // will send this header with each response
+        header("X-Engine", "Ktor")
     }
     install(CORS) {
         allowMethod(HttpMethod.Options)
         allowMethod(HttpMethod.Put)
         allowMethod(HttpMethod.Delete)
         allowMethod(HttpMethod.Patch)
-        allowHeader(HttpHeaders.Authorization)
-        allowHeader("MyCustomHeader")
-        anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
+        allowMethod(HttpMethod.Get)
+        allowMethod(HttpMethod.Post)
+        anyHost()
     }
 }
