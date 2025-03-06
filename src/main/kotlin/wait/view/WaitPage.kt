@@ -4,7 +4,7 @@ import com.csgames.common.layout
 import kotlinx.html.*
 
 fun HTML.waitPageDisplay(id: String) = layout {
-  div { a(href = "/wait") { +"<- Go to main page / Retour à l'accueil" } }
+  div { a(href = "/") { +"<- Go to main page / Retour à l'accueil" } }
   h1 { +"Wait game" }
 
   div(classes = "response-area") {

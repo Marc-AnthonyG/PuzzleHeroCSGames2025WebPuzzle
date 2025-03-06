@@ -6,7 +6,8 @@ import kotlinx.html.div
 import kotlinx.html.h1
 
 fun HTML.navPage() = layout {
-  h1 { +"Game navigateur" }
+  h1 { +"Game navigator / Navigateur de jeux" }
 
-  div { a(href = "/wait") { +"Go to wait game" } }
+  div { a(href = "/wait") { +"Go to 'Wait' game / Aller au jeu 'Wait'" } }
+  div { a(href = "/buttons") { +"Go to buttons game / Aller au jeu 'Buttons'" } }
 }

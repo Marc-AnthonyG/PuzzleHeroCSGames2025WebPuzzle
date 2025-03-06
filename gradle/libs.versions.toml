@@ -10,6 +10,7 @@ kotlinx-html-version = "0.12.0"
 ktor-server-default-headers = { module = "io.ktor:ktor-server-default-headers", version.ref = "ktor-version" }
 ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor-version" }
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor-version" }
+ktor-server-compression = { module = "io.ktor:ktor-server-compression", version.ref = "ktor-version" }
 ktor-server-webjars = { module = "io.ktor:ktor-server-webjars", version.ref = "ktor-version" }
 ktor-error-mapper = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor-version" }
 ktor-server-host-common = { module = "io.ktor:ktor-server-host-common", version.ref = "ktor-version" }

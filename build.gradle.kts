@@ -39,6 +39,7 @@ dependencies {
   implementation(libs.ktor.server.html.builder)
   implementation(libs.kotlinx.html)
   implementation(libs.ktor.server.webjars)
+  implementation(libs.ktor.server.compression)
 
   implementation("org.webjars.npm:htmx.org:2.0.4")
   implementation("org.jetbrains.kotlin-wrappers:kotlin-css:2025.3.4")
