@@ -10,4 +10,5 @@ fun HTML.navPage() = layout {
 
   div { a(href = "/wait") { +"Go to 'Wait' game / Aller au jeu 'Wait'" } }
   div { a(href = "/buttons") { +"Go to buttons game / Aller au jeu 'Buttons'" } }
+  div { a(href = "/snake") { +"Go to snake game / Aller au jeu du serpent" } }
 }
