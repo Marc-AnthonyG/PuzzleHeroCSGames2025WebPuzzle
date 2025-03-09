@@ -17,8 +17,9 @@ data class GameState(
     val id: String,
     val snake: List<Point>,
     val direction: Direction,
-    val food: Point,
+    val foods: List<Point>,
     val gameOver: Boolean = false,
     val won: Boolean = false,
-    var expiredAt: Instant = Clock.System.now().plus(1.hours)
+    var expiredAt: Instant = Clock.System.now().plus(1.hours),
+    val numberOfTurns: Int = 0
 )

@@ -154,7 +154,7 @@ fun HtmlBlockTag.gameBoard(gameState: GameState) {
         val cellClass =
             when {
               gameState.snake.contains(point) -> "cell snake"
-              point == gameState.food -> "cell food"
+              gameState.foods.contains(point) -> "cell food"
               else -> "cell"
             }
         div(classes = cellClass) {}

@@ -13,7 +13,7 @@ import io.ktor.server.routing.*
 import java.util.*
 
 const val GRID_SIZE = 50
-const val FLAG = "CSGAMES-impossible-you-must-be-cheating"
+const val FLAG = "CSGAMES-IMPOSSIBLE-YOU-MUST-BE-CHEATING"
 
 fun Application.snakeGameRoute(gameRepository: GameRepository) {
   routing {
@@ -24,7 +24,8 @@ fun Application.snakeGameRoute(gameRepository: GameRepository) {
               id = gameId,
               snake = listOf(Point(GRID_SIZE / 2, GRID_SIZE / 2)),
               direction = Direction.RIGHT,
-              food = generateFood(listOf(Point(GRID_SIZE / 2, GRID_SIZE / 2))),
+              foods =
+                  listOf(generateFood(listOf(Point(GRID_SIZE / 2, GRID_SIZE / 2)), emptyList())),
               gameOver = false)
       gameRepository.saveGame(initialGame)
 
@@ -72,15 +73,19 @@ fun Application.snakeGameRoute(gameRepository: GameRepository) {
             val snake = mutableListOf(newHead)
             snake.addAll(currentGame.snake)
 
-            if (newHead != currentGame.food) {
+            if (!currentGame.foods.contains(newHead)) {
               snake.removeAt(snake.lastIndex)
             }
 
             snake
           }
 
-      val eatenFood = newHead == currentGame.food
-      val newFood = if (eatenFood) generateFood(newSnake) else currentGame.food
+      val newFoods = currentGame.foods.filter { it != newHead }.toMutableList()
+
+      if (currentGame.foods.isEmpty() ||
+          currentGame.numberOfTurns % 25 == 0 && currentGame.foods.size < 5) {
+        newFoods += generateFood(newSnake, currentGame.foods)
+      }
 
       val gameWon = newSnake.size == GRID_SIZE * GRID_SIZE
 
@@ -88,9 +93,10 @@ fun Application.snakeGameRoute(gameRepository: GameRepository) {
           currentGame.copy(
               snake = newSnake,
               direction = newDirection,
-              food = newFood,
+              foods = newFoods,
               gameOver = selfCollision || gameWon,
-              won = gameWon)
+              won = gameWon,
+              numberOfTurns = currentGame.numberOfTurns + 1)
 
       gameRepository.saveGame(newGameState)
 
@@ -99,12 +105,12 @@ fun Application.snakeGameRoute(gameRepository: GameRepository) {
   }
 }
 
-fun generateFood(snake: List<Point>): Point {
+fun generateFood(snake: List<Point>, foods: List<Point>): Point {
   val allPositions = mutableListOf<Point>()
   for (x in 0 until GRID_SIZE) {
     for (y in 0 until GRID_SIZE) {
       val point = Point(x, y)
-      if (!snake.contains(point)) {
+      if (!snake.contains(point) && !foods.contains(point)) {
         allPositions.add(point)
       }
     }
