@@ -12,7 +12,7 @@ import io.ktor.server.request.*
 import io.ktor.server.routing.*
 import java.util.*
 
-const val GRID_SIZE = 60
+const val GRID_SIZE = 50
 const val FLAG = "CSGAMES-impossible-you-must-be-cheating"
 
 fun Application.snakeGameRoute(gameRepository: GameRepository) {
