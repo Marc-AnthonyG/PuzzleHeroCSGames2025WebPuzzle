@@ -26,7 +26,7 @@ fun Application.module() {
   configureStyles()
   install(ContentNegotiation)
   install(Webjars)
-  install(RateLimit) { global { rateLimiter(limit = 8, refillPeriod = 1.seconds) } }
+  install(RateLimit) { global { rateLimiter(limit = 10, refillPeriod = 1.seconds) } }
   routing { get("/") { call.respondHtml { navPage() } } }
   waitGameRoute(PlayerRepository())
   buttonGameRoute()
