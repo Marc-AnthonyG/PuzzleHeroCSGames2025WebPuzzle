@@ -18,7 +18,7 @@ fun Application.buttonGameRoute() {
         return@post
       }
 
-      if (buttonId == 313247) {
+      if (buttonId == 68132) {
         call.respondText("CSGAMES-YOU-ARE-THE-LUCKIEST")
         return@post
       }
